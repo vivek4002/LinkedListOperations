@@ -64,5 +64,35 @@ namespace LinkedListOperations
             }
             return currentNode;
         }
+
+        /// <summary>
+        /// Deletes Nth node.
+        /// </summary>
+        /// <param name="n">N.</param>
+        public void DeleteNode(int n)
+        {
+            if (n > Count || n <= 0)
+                return ;
+            //delete the Head
+            if (n == 1)
+            {
+                Head = Head.Next;
+                Count--;
+                return;
+            }
+            //delete the last node
+            if (n == Count)
+            {
+                var newLastNode = GetNode(Count - 1);
+                newLastNode.Next = null;
+                Count--;
+                return;
+            }
+            var nodeToDelete = GetNode(n);
+            var previosNode = GetNode(n - 1);
+            //assign the nodeToDelete.next to previousNode.next
+            previosNode.Next = nodeToDelete.Next;
+            Count--;
+        }
     }
 }

@@ -26,6 +26,14 @@ namespace LinkedListOperations
             Console.WriteLine("Third Item is: " + list.GetNode(3).Value);
             Console.WriteLine("Last Item is: " + list.GetNode(list.Count).Value);
 
+            // delete Node
+            list.DeleteNode(1);
+            list.DeleteNode(list.Count);
+            foreach (int val in list.Traverse())
+            {
+                Console.Write(val + " ");
+            }
+
         }
     }
 }
