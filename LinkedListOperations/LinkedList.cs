@@ -65,6 +65,20 @@ namespace LinkedListOperations
             return currentNode;
         }
 
+        public Node GetPreviousNode(Node N){
+            
+            if(Head==N) return null;
+            var currentNode=Head;
+            while(currentNode!=null){
+                if(currentNode.Next==N)
+                {
+                    return currentNode;
+                }
+                currentNode=currentNode.Next;
+            }
+            return null; 
+        }
+
         /// <summary>
         /// Deletes Nth node.
         /// </summary>
@@ -94,5 +108,32 @@ namespace LinkedListOperations
             previosNode.Next = nodeToDelete.Next;
             Count--;
         }
+
+        public Node SearchNode(int val)
+        {
+            var currentNode= Head;
+            while(currentNode!=null){
+                if(currentNode.Value==val) return currentNode;
+                currentNode=currentNode.Next;
+            }
+            return null;
+        }
+
+        //Swap the nodes without swapping the data
+        // swapping the data could be slow when the node has large data
+        // so we can swap the nodes just by re-arranging the references
+        public void SwapNodes(int a, int b)
+        {
+            var node1= SearchNode(a);
+            var node2= SearchNode(b);
+            var prevNode1= GetPreviousNode(node1);
+            var prevNode2= GetPreviousNode(node2);
+            var temp=node1.Next;
+            node1.Next=node2.Next;
+            node2.Next=temp;
+            prevNode1.Next=node2;
+            prevNode2.Next= node1;
+        }
+
     }
 }

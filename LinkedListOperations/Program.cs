@@ -33,6 +33,19 @@ namespace LinkedListOperations
             {
                 Console.Write(val + " ");
             }
+            Console.WriteLine();
+            //Search Node
+            var node= list.SearchNode(2);
+            Console.WriteLine($"Searched NOde is {node.Value}");
+
+            // swap list elements
+            list.SwapNodes(3, 4);
+            list.SwapNodes(2, 6);
+            foreach (int val in list.Traverse())
+            {
+                Console.Write(val + " ");
+            }
+
 
         }
     }
