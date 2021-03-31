@@ -3,7 +3,7 @@ namespace LinkedListOperations
 {
     public class LinkedList
     {
-        public Node Head { get; private set; }
+        public Node Head { get; set; }
         public int Count { get; private set; }
 
         /// <summary>
