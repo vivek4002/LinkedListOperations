@@ -71,8 +71,62 @@ namespace LinkedListOperations {
                 temp = node;
                 list.Head = node;
                 node = next;
-
             }
+        }
+
+        public void ReverseRecursive(LinkedList list){
+           list.Head= ReverseRecursive(list.Head, null);
+        }
+
+        private Node ReverseRecursive(Node head, Node temp){
+            if(head==null) return temp;
+            var next= head.Next;
+            head.Next= temp;
+            temp= head;
+            return ReverseRecursive(next, temp);
+        }
+
+        //we can do it by hashmap, 2 stacks sorting with searching
+        // efficient approach: get length of both lists and calculate the difference d.
+        //move d steps in longer list,
+        // after that move one step in both lists and compare
+        // first common node is the point where they meet
+        // O(1) space and O(m+n) time
+        public Node FindCommonNode(LinkedList l1, LinkedList l2){
+            int len1=0;
+            int len2=0;
+            var diff=0;
+            var node= l1.Head;
+            while(node!=null){
+                len1++;
+                node= node.Next;
+            }
+            node= l2.Head;
+            while(node!=null){
+                len2++;
+                node=node.Next;
+            }
+            node= l1.Head;
+            var node2= l2.Head;
+            if(len1>len2){
+                diff= len1-len2;
+                while(diff!=0){
+                    node= node.Next;
+                    diff--;
+                }
+            }else{
+                diff= len2- len1;
+                while(diff!=0){
+                    node2= node2.Next;
+                }
+            }
+            while(node!=null && node2!=null){
+                node= node.Next;
+                node2= node2.Next;
+                if(node== node2) return node;
+            }
+
+            return null;
         }
     }
 
