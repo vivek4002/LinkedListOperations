@@ -118,6 +118,7 @@ namespace LinkedListOperations {
                 diff= len2- len1;
                 while(diff!=0){
                     node2= node2.Next;
+                    diff--;
                 }
             }
             while(node!=null && node2!=null){
