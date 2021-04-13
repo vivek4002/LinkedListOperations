@@ -16,12 +16,17 @@ namespace LinkedListOperations {
             list.AddNextNode (new Node (2));
             list.AddNextNode (new Node (4));
             list.AddNextNode (new Node (6));
+            Console.WriteLine($"Middle Element of Even List: {problems.findMiddleNode(list).Value}");
 
             problems.ReverseIterative(list);
             problems.ReverseRecursive(list);
 
+            problems.ReverseListInPairs(list);
+
             var commonNode= new Node(7);
             list.AddNextNode(commonNode);
+            Console.WriteLine($"Middle Element of Odd List: {problems.findMiddleNode(list).Value}");
+            problems.ReverseListInPairs(list);
 
             var list2= new LinkedList();
             list2.AddNextNode(new Node(8));
@@ -32,6 +37,8 @@ namespace LinkedListOperations {
 
             var cn= problems.FindCommonNode(list, list2);
             Console.WriteLine($"Common Node in Lists: {cn.Value}");
+
+            list2.DeleteNode(4);
 
 
 
