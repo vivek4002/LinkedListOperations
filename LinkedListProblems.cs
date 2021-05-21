@@ -158,7 +158,78 @@ namespace LinkedListOperations {
             }
         }
 
+        public ListNode MergeKLists (ListNode[] lists) {
+            if (lists == null || lists.Length == 0) return null;
+            var node1 = lists[0];
+            ListNode finalList = null;
+            ListNode nextNode = null;
+            for (int i = 1; i < lists.Length; i++) {
+                var node2 = lists[i];
+                if (node1 == null) { node1 = node2; continue; }
+                if (node2 == null) { continue; }
+                ListNode node2Add = null;
+                while (node1 != null && node2 != null) {
+                    if (node1.val < node2.val) {
+                        node2Add = new ListNode (node1.val);
+                        node1 = node1.next;
+                    } else {
+                        node2Add = new ListNode (node2.val);
+                        node2 = node2.next;
+                    }
+                    if (finalList == null) {
+                        finalList = node2Add;
+                    } else {
+                        nextNode.next = node2Add;
+                    }
+                    nextNode = node2Add;
+                }
+                while (node1 != null) {
+                    nextNode.next = new ListNode (node1.val);
+                    nextNode = nextNode.next;
+                    node1 = node1.next;
+                }
+                while (node2 != null) {
+                    nextNode.next = new ListNode (node2.val);
+                    nextNode = nextNode.next;
+                    node2 = node2.next;
+                }
+                if (nextNode != null) nextNode.next = null;
+                node1 = finalList;
+                finalList = null;
 
+            }
+            return node1;
+        }
+
+        public void ReversAfterKElements (int k, LinkedList list) {
+            ReversAfterKElements (k, list, list.Head, null);
+        }
+
+        private void ReversAfterKElements (int k, LinkedList list, Node fix, Node prev) {
+            if (k == 0) return;
+            var node = fix;
+            // we need previous element from last iteration to link the reversed list in this iteration.
+            var xtemp = fix;
+            //move the fix to the point till where we need to reverse the list (k+1)
+            for (int i = 1; i <= k; i++) {
+                if (fix == null) return;
+                fix = fix.Next;
+            }
+            var temp = fix;
+            // reverse the list
+            while (node != fix) {
+                var next = node.Next;
+                node.Next = temp;
+                temp = node;
+                node = next;
+            }
+            // link the previous list 
+            if (prev != null) prev.Next = temp;
+            else list.Head = temp;
+            prev = xtemp;
+            // do untill we reach to the end
+            ReversAfterKElements (k, list, fix, prev);
+        }
     }
 
 }

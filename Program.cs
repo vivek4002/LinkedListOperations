@@ -40,7 +40,14 @@ namespace LinkedListOperations {
 
             list2.DeleteNode(4);
 
+            problems.ReversAfterKElements(3,list);
+            problems.ReversAfterKElements(4, list);
+            problems.ReversAfterKElements(8,list);
+            problems.ReversAfterKElements(1,list);
 
+            var listx= new ListNode(-1, new ListNode(5, new ListNode (11)));
+            var listy= new ListNode(6, new ListNode(10));
+            var merged= problems.MergeKLists(new ListNode[]{null, listx, null, listy});
 
             Console.WriteLine ($"Third node from last is:{problems.FindNthNodeFromLast(list, 3)}");
             Console.WriteLine ($"First node from last is:{problems.FindNthNodeFromLast(list, 1)}");
